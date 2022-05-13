@@ -233,12 +233,17 @@ function revealField(event){
     endGame.win()
 }
 
+function pre(event){
+
+}
+
 function initGame(){
-    emoji.src = "assets/happy.png"
     table.onclick = revealField
     table.oncontextmenu = flagField
+    emoji.src = "assets/happy.png"
     emoji.onclick = () => {removeBoard(); initGame()}
     clearInterval(timerInterval)
+    emoji.oncontextmenu = (event) => {event.preventDefault()}
     timerInterval = setInterval(incrementSeconds, 1000);
 
     PuttedFlags = 0
