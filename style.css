@@ -1,7 +1,6 @@
 body {
     background-color: #252526;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    margin: 10px;
 }
 
 .container {
@@ -44,8 +43,8 @@ table {
     background-color: rgb(24, 24, 24);
     color: rgb(255, 0, 0);
 
-    padding: 5px;
-    font-size: 2.5em;
+    padding: 8px;
+    font-size: 3.5em;
     font-weight: bold;
 }
 
@@ -65,6 +64,10 @@ td img {
     border-right: 10px solid #808080;
     border-bottom: 10px solid #808080;
     padding: 20px;
+}
+
+.emoji {
+    width: 96px;
 }
 
 .emoji:hover {
@@ -99,7 +102,7 @@ a:visited {
 
 @media only screen and (max-width: 700px) {
     body {
-      zoom: 75%;
+      zoom: 60%;
     }
     img {
         width: 64px;
