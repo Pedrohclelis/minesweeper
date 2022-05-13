@@ -13,7 +13,6 @@ body {
 }
 
 h1 {
-    
     text-align: center;
     color: white;
 }
@@ -41,7 +40,7 @@ table {
 }
 
 td img {
-    
+    width: 64px;
     user-select: none; /*disable select imagems */
     -moz-user-select: none;
     -webkit-user-drag: none;
@@ -89,6 +88,6 @@ a:visited {
   
 @media only screen and (max-width: 500px) {
     body {
-      zoom: 50%;
+      zoom: 60%;
     }
   }
