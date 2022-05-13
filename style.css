@@ -1,6 +1,7 @@
 body {
     background-color: #252526;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    zoom: 95%;
 }
 
 .container {
@@ -25,7 +26,6 @@ table {
 }
 
 .hud {
-
     display: flex;
     justify-content: space-between;
     align-items: center;
