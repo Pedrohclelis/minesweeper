@@ -1,7 +1,7 @@
-
 body {
     background-color: #252526;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 10px;
 }
 
 .container {
@@ -26,6 +26,7 @@ table {
 }
 
 .hud {
+
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -35,8 +36,17 @@ table {
     border-right: 10px solid #ffffff;
     border-bottom: 10px solid #ffffff;
 
-    width: 576px;
-    margin-bottom: 20px;
+    padding: 10px 20px 10px 20px;
+    margin-bottom: 20px;    
+}
+
+.mine-counter, .timer {
+    background-color: rgb(24, 24, 24);
+    color: rgb(255, 0, 0);
+
+    padding: 5px;
+    font-size: 2.5em;
+    font-weight: bold;
 }
 
 td img {
@@ -55,6 +65,14 @@ td img {
     border-right: 10px solid #808080;
     border-bottom: 10px solid #808080;
     padding: 20px;
+}
+
+.emoji:hover {
+    -webkit-filter: brightness(90%);
+}
+
+.emoji:active {
+    content: url("assets/happy-active.png");
 }
 
 .undiscovered.hover {

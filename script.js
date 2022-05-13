@@ -163,6 +163,7 @@ const endGame = {
     },
     stopFunctions(){
         showBombs()
+        clearInterval(timerInterval)
         table.onclick = undefined
         table.oncontextmenu = (event) => {event.preventDefault()}
         table.onmouseup = undefined
@@ -170,6 +171,8 @@ const endGame = {
     }
 }
 
+var minecounter = document.querySelector('.mine-counter')
+minecounter.innerHTML = minesAmount
 function flagField(event){
     //Remove default menu at right click
     event.preventDefault()
@@ -182,10 +185,24 @@ function flagField(event){
         cell.className = "flag"
         cell.src = "assets/flag.png"
         cell.alt = "flag"
+        PuttedFlags++
     } else if (cell.classList.contains("flag")){
         cell.className = "undiscovered"
         cell.src = "assets/undiscovered.png"
         cell.alt = "undiscovered"
+        PuttedFlags--
+    }
+
+    if (minesAmount-PuttedFlags <= -10){
+        minecounter.innerHTML = `${minesAmount-PuttedFlags}`
+    } else if (minesAmount-PuttedFlags <= -1){
+        minecounter.innerHTML = `0${minesAmount-PuttedFlags}`
+    } else if (minesAmount-PuttedFlags <= 9){
+        minecounter.innerHTML = `00${minesAmount-PuttedFlags}`
+    } else if (minesAmount-PuttedFlags <= 99){
+        minecounter.innerHTML = `0${minesAmount-PuttedFlags}`
+    } else {
+        minecounter.innerHTML = minesAmount-PuttedFlags;
     }
 }
 
@@ -221,6 +238,13 @@ function initGame(){
     table.onclick = revealField
     table.oncontextmenu = flagField
     emoji.onclick = () => {removeBoard(); initGame()}
+    clearInterval(timerInterval)
+    timerInterval = setInterval(incrementSeconds, 1000);
+
+    PuttedFlags = 0
+    minecounter.innerHTML = `0${minesAmount-PuttedFlags}`
+    seconds = 0
+    timer.innerHTML = '000'
     
     //Personalized :hover and :active mechanism
     var down = false;
@@ -257,5 +281,19 @@ function initGame(){
     printBoard()
 }
 
+//timer HUD
+timerInterval = setInterval(incrementSeconds, 1000);
+timer = document.querySelector('.timer')
+var seconds = 0;
+function incrementSeconds() {
+    seconds += 1;
+    if (seconds < 10){
+        timer.innerHTML = '00' + seconds;
+    } else if (seconds < 100){
+        timer.innerHTML = '0' + seconds;
+    } else {
+        timer.innerHTML = seconds;
+    }
+}
 
 initGame()
