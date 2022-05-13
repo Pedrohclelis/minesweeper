@@ -107,6 +107,9 @@ a:visited {
     img {
         width: 64px;
     }
+    .undiscovered:active {
+        content: url("assets/0.png");
+    }
   }
 
   
@@ -117,4 +120,5 @@ a:visited {
     img {
         width: 64px;
     }
+    
   }
