@@ -83,11 +83,17 @@ a:visited {
     body {
       zoom: 75%;
     }
+    img {
+        width: 64px;
+    }
   }
 
   
 @media only screen and (max-width: 500px) {
     body {
       zoom: 60%;
+    }
+    img {
+        width: 64px;
     }
   }
