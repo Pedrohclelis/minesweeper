@@ -41,7 +41,7 @@ table {
 }
 
 td img {
-    width: 64px;
+    
     user-select: none; /*disable select imagems */
     -moz-user-select: none;
     -webkit-user-drag: none;
@@ -58,11 +58,11 @@ td img {
     padding: 20px;
 }
 
-.undiscovered.hover{
+.undiscovered.hover {
     content: url("assets/hover.png");
 }
 
-.undiscovered.pressioned{
+.undiscovered.pressioned {
     content: url("assets/0.png");
 }
 
@@ -72,9 +72,23 @@ footer {
 }
 
 a {
+    color: white;
     font-style: italic;
 }
 
 a:visited {
     color: white;
 }
+
+@media only screen and (max-width: 700px) {
+    body {
+      zoom: 75%;
+    }
+  }
+
+  
+@media only screen and (max-width: 500px) {
+    body {
+      zoom: 50%;
+    }
+  }
