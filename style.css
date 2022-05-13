@@ -102,7 +102,7 @@ a:visited {
 
 @media only screen and (max-width: 700px) {
     body {
-      zoom: 60%;
+      zoom: 70%;
     }
     img {
         width: 64px;
@@ -112,7 +112,7 @@ a:visited {
   
 @media only screen and (max-width: 500px) {
     body {
-      zoom: 60%;
+      zoom: 50%;
     }
     img {
         width: 64px;
