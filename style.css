@@ -105,8 +105,11 @@ a:visited {
 }
 
 @media only screen and (max-width: 700px) {
+    h1 {
+        color: red;
+    }
     body {
-      zoom: 70%;
+      zoom: 50%;
     }
     .undiscovered:active {
         content: url("assets/0.png");
@@ -115,7 +118,10 @@ a:visited {
 
   
 @media only screen and (max-width: 500px) {
+    h1 {
+        color: blue;
+    }
     body {
-      zoom: 50%;
+      zoom: 30%;
     }
   }
