@@ -130,13 +130,13 @@ a:visited {
         color: blue;
     }
     .mine-counter, .timer {
-        font-size: 2em;
+        font-size: 1em;
     }
     .emoji {
-        width: 64px;
+        width: 32px;
     }
     td img {
-        width: 50px;
+        width: 25px;
     }
     .undiscovered:active {
         content: url("assets/0.png");
