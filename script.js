@@ -1,4 +1,3 @@
-const boardLength = 9
 const board = []
 var PuttedFlags
 var firstClick
@@ -9,27 +8,27 @@ minesAmount = 10
 ////////////////////////////////////////////////////////// BUILD BOARD //////////////////////////////////////////////////////////
 function setBoard(){
     //Create the initial matrix for the board, who each field has id: 0 and visible:
-    for (var i=0; i<boardLength; i++){
+    for (var i=0; i<boardLines; i++){
         board[i] = []
-        for (var j=0; j<boardLength; j++){
+        for (var j=0; j<boardColumns; j++){
             board[i][j] = 0
         }
     }
 }
 
-function sortNumber(){
+function sortNumber(max){
     min = Math.ceil(0);
-    max = Math.floor(boardLength);
+    max = Math.floor(max);
     return Math.floor(Math.random() * (max - min)) + min;
 }
 
 function setMines(minesAmount){
     var count = 0
     while (count < minesAmount){
-        var mineLine = sortNumber()
-        var mineColumn = sortNumber()
-        for (var i=0; i<boardLength; i++){
-            for (var j=0; j<boardLength; j++){
+        var mineLine = sortNumber(boardLines)
+        var mineColumn = sortNumber(boardColumns)
+        for (var i=0; i<boardLines; i++){
+            for (var j=0; j<boardColumns; j++){
                 //for each field, if his cordinates is equal to sorted mine coords, and this field isnt a mine yet, put here a mine
                 if ((i == mineLine && j == mineColumn) && (board[i][j] != -1)){
                     board[mineLine][mineColumn] = -1
@@ -46,15 +45,15 @@ function setNumbersAround(mineLine, mineColumn){
     for (var k=mineLine-1; k<=mineLine+1; k++){
         for (var l=mineColumn-1; l<=mineColumn+1; l++){
             //if exists, and isnt the original mine field, neither other mine field, set his id to +1 to sinalize the original mine
-            if ( ((k >= 0) && (k < boardLength) && (l >= 0) && (l < boardLength)) && !(k == mineLine && l == mineColumn) && (board[k][l] != -1) )
+            if ( ((k >= 0) && (k < boardLines) && (l >= 0) && (l < boardColumns)) && !(k == mineLine && l == mineColumn) && (board[k][l] != -1) )
                 board[k][l] += 1
         }
     }
 }
 
 function cluedBoard(){
-    for (var i=0; i<boardLength; i++){
-        for (var j=0; j<boardLength; j++){
+    for (var i=0; i<boardLines; i++){
+        for (var j=0; j<boardColumns; j++){
             if (board[i][j] == -1){
                 document.querySelector('div.test').innerHTML += `[~] `
             } else{
@@ -70,10 +69,10 @@ function cluedBoard(){
 }
 
 function printBoard(){
-    for (var i=0; i<boardLength; i++){
+    for (var i=0; i<boardLines; i++){
         //Insert a row <tr> for each line
         var row = document.querySelector('tbody').insertRow(`${i}`)
-        for (var j=0; j<boardLength; j++){
+        for (var j=0; j<boardColumns; j++){
             //Insert the cells <td> in respective row <tr> for each column 
             cell = row.insertCell(`${j}`)
 
@@ -91,14 +90,14 @@ function printBoard(){
 }
 
 function clearBoard(){
-    for (var i=0; i<boardLength*boardLength; i++){
+    for (var i=0; i<boardLines*boardColumns; i++){
         var td = document.querySelectorAll('tbody td')
         td[i].innerHTML = `<img src="assets/undiscovered.png" class="undiscovered" alt="undiscovered">`
     }
 }
 
 function removeBoard(){
-    for (var i=0; i<boardLength; i++){
+    for (var i=0; i<boardLines; i++){
         //Insert a row <tr> for each line
         var row = document.querySelectorAll('tbody tr')
         row[0].remove()
@@ -106,8 +105,8 @@ function removeBoard(){
 }
 
 function showBombs(){
-    for (i=0; i<boardLength; i++){
-        for(j=0; j<boardLength; j++){
+    for (i=0; i<boardLines; i++){
+        for(j=0; j<boardColumns; j++){
             if (board[i][j] == -1){
                 let cell = table.rows[i].cells[j].firstChild
                 setImage(cell, i, j)
@@ -122,7 +121,7 @@ function clearFields(line, col){
         for (var k=line-1; k<=line+1; k++){
             for (var l=col-1; l<=col+1; l++){
                 //if exists...
-                if ((k >= 0) && (k < boardLength) && (l >= 0) && (l < boardLength)){
+                if ((k >= 0) && (k < boardLines) && (l >= 0) && (l < boardColumns)){
                     cell = table.rows[k].cells[l].firstChild
                     //If isnt the original '0' field, and isnt visible yet, reveal that cell
                     if ( !(k == line && l == col) && (cell.classList.contains("undiscovered") || cell.classList.contains("flag")) ){
@@ -138,9 +137,9 @@ function clearFields(line, col){
 
 function setImage(element, line, col){
     if (line != undefined && col != undefined){
-        element.className = "number" + board[line][col]
+        element.className = "num" + board[line][col]
         element.src = `assets/${board[line][col]}.png`
-        element.alt = `number ${board[line][col]}`
+        element.alt = `num ${board[line][col]}`
     }
 }
 
@@ -150,13 +149,13 @@ const endGame = {
         var undiscoveredCells = document.querySelectorAll('.undiscovered, .flag')
         if (undiscoveredCells.length === minesAmount){
             endGame.stopFunctions()
-            window.alert('You win')
+            
             emoji.src = "assets/win.png"
         }
     },
     lose(loserCell){
         endGame.stopFunctions()
-        window.alert('You lose')
+        
         loserCell.src = "assets/mine-red.png"
         loserCell.alt = "mine-red"
         emoji.src = "assets/dead.png"
@@ -246,6 +245,31 @@ function initGame(){
     emoji.oncontextmenu = (event) => {event.preventDefault()}
     timerInterval = setInterval(incrementSeconds, 1000);
 
+    diff = document.querySelector('.difficulty')
+    switch (diff.value){
+        case 'easy':
+            boardLines = 9
+            boardColumns = 9
+            minesAmount = 10
+            document.body.style.zoom = "100%"
+            break
+        case 'intermediary':
+            boardLines = 16
+            boardColumns = 16
+            minesAmount = 40
+            document.body.style.zoom = "70%"
+            break
+        case 'hard':
+            boardLines = 16
+            boardColumns = 30
+            minesAmount = 99
+            document.body.style.zoom = "70%"
+            break
+        case 'custom':
+            console.log('custom')
+        break
+    }
+
     PuttedFlags = 0
     minecounter.innerHTML = `0${minesAmount-PuttedFlags}`
     seconds = 0
@@ -284,6 +308,7 @@ function initGame(){
     setBoard()
     setMines(minesAmount)
     printBoard()
+    console.log(board)
 }
 
 //timer HUD
@@ -302,3 +327,5 @@ function incrementSeconds() {
 }
 
 initGame()
+diff = document.querySelector('.difficulty')
+diff.onchange = () => {removeBoard(); initGame()}

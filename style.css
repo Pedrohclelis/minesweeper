@@ -1,7 +1,6 @@
 body {
     background-color: #252526;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    zoom: 95%;
 }
 
 .container {
@@ -49,7 +48,7 @@ table {
 }
 
 td img {
-    width: 64px;
+    width: 60px;
     user-select: none; /*disable select imagems */
     -moz-user-select: none;
     -webkit-user-drag: none;
@@ -104,9 +103,6 @@ a:visited {
     body {
       zoom: 70%;
     }
-    img {
-        width: 64px;
-    }
     .undiscovered:active {
         content: url("assets/0.png");
     }
@@ -117,8 +113,4 @@ a:visited {
     body {
       zoom: 50%;
     }
-    img {
-        width: 64px;
-    }
-    
   }
