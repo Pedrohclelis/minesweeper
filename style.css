@@ -38,13 +38,13 @@ table {
     margin-bottom: 20px;    
 }
 
-.mine-counter, .timer {
-    background-color: rgb(24, 24, 24);
-    color: rgb(255, 0, 0);
-
-    padding: 8px;
-    font-size: 3.5em;
-    font-weight: bold;
+.general {
+    background-color: #c0c0c0;
+    border-top: 10px solid #ffffff;
+    border-left: 10px solid #ffffff;
+    border-right: 10px solid #808080;
+    border-bottom: 10px solid #808080;
+    padding: 20px;
 }
 
 td img {
@@ -56,13 +56,13 @@ td img {
     -ms-user-select: none;
 }
 
-.general {
-    background-color: #c0c0c0;
-    border-top: 10px solid #ffffff;
-    border-left: 10px solid #ffffff;
-    border-right: 10px solid #808080;
-    border-bottom: 10px solid #808080;
-    padding: 20px;
+.mine-counter, .timer {
+    background-color: rgb(24, 24, 24);
+    color: rgb(255, 0, 0);
+
+    padding: 8px;
+    font-size: 3.5em;
+    font-weight: bold;
 }
 
 .emoji {
@@ -109,7 +109,21 @@ a:visited {
         color: red;
     }
     body {
-      zoom: 50%;
+      zoom: 10%;
+    }
+    .mine-counter, .timer {
+        background-color: rgb(24, 24, 24);
+        color: rgb(255, 0, 0);
+    
+        padding: 8px;
+        font-size: 2em;
+        font-weight: bold;
+    }
+    .emoji {
+        width: 64px;
+    }
+    td img {
+        width: 50px;
     }
     .undiscovered:active {
         content: url("assets/0.png");
