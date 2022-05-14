@@ -230,7 +230,7 @@ function flagField(event){
         minecounter.innerHTML = minesAmount-PuttedFlags;
     }
 
-    var audio = new Audio('sounds/flagg.mp3');
+    var audio = new Audio('sounds/flag.mp3');
     audio.play();
 }
 
@@ -267,7 +267,7 @@ function revealField(event, cel){
         }
         firstClick = false
     }
-    var audio = new Audio('sounds/reveal.mp3');
+    var audio = new Audio('sounds/click.mp3');
     audio.play();
     endGame.win()
 }
