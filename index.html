@@ -10,7 +10,7 @@
 </head>
 <body>
     <h1>Minesweeper - js</h1>
-    
+    <audio src="sounds/main-ost.mp3" type="audio/mp3" autoplay loop></audio>
     <div class="container">
         <div class="general">
             <div class="hud">
@@ -26,13 +26,15 @@
             </div>
         </div>
 
-        <label for="difficulty">Difficulty: </label>
-        <select name="difficulty" class="difficulty">
-            <option value="easy" selected>Easy</option>
-            <option value="intermediary">Intermediary</option>
-            <option value="hard">Hard</option>
-            <option value="custom">Custom</option>
-        </select>
+        <div class="diff-selector">
+            <label for="difficulty">Difficulty: </label>
+            <select name="difficulty" class="difficulty">
+                <option value="easy" selected>Easy</option>
+                <option value="intermediary">Intermediary</option>
+                <option value="hard">Hard</option>
+                <option value="custom">Custom</option>
+            </select>
+        </div>
     </div>
 
     <footer class="footer">

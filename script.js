@@ -3,7 +3,6 @@ var PuttedFlags
 var firstClick
 var emoji = document.querySelector('.emoji')
 var table = document.querySelector('table')
-minesAmount = 10
 
 ////////////////////////////////////////////////////////// BUILD BOARD //////////////////////////////////////////////////////////
 function setBoard(){
@@ -40,6 +39,27 @@ function setMines(minesAmount){
     }
 }
 
+function setRemovedMine(removedLine, removedCol){
+    while (true){
+        var mineLine = sortNumber(boardLines)
+        var mineColumn = sortNumber(boardColumns)
+        //Just if isnt the original coords from removed mine
+        if (mineLine != removedLine && mineColumn != removedCol){
+            for (var i=0; i<boardLines; i++){
+                for (var j=0; j<boardColumns; j++){
+                    //for each field, if his cordinates is equal to sorted mine coords, and this field isnt a mine yet, put here a mine
+                    if ((i == mineLine && j == mineColumn) && (board[i][j] != -1)){
+                        board[mineLine][mineColumn] = -1
+                        setNumbersAround(mineLine, mineColumn)
+                        console.log(`mine putted in ${mineLine} ${mineColumn}`)
+                        return
+                    }
+                }
+            }
+        }
+    }
+}
+
 function setNumbersAround(mineLine, mineColumn){
     //for each 9 fields around mine...
     for (var k=mineLine-1; k<=mineLine+1; k++){
@@ -51,21 +71,23 @@ function setNumbersAround(mineLine, mineColumn){
     }
 }
 
-function cluedBoard(){
-    for (var i=0; i<boardLines; i++){
-        for (var j=0; j<boardColumns; j++){
-            if (board[i][j] == -1){
-                document.querySelector('div.test').innerHTML += `[~] `
-            } else{
-                document.querySelector('div.test').innerHTML += `[${board[i][j]}] `
+function removeNumbersAround(mineLine, mineColumn){
+    //for each 9 fields around removed mine...
+    for (var k=mineLine-1; k<=mineLine+1; k++){
+        for (var l=mineColumn-1; l<=mineColumn+1; l++){
+            //if exists, and isnt the original removed mine field
+            if (((k >= 0) && (k < boardLines) && (l >= 0) && (l < boardColumns)) && !(k == mineLine && l == mineColumn) ){
+                //If its a number, down his id's in -1
+                if (board[k][l] != -1){
+                    board[k][l] -= 1
+                }
+                //If its a mine either, put +1 in original '0 removed mine'
+                else if (board[k][l] == -1){
+                    board[mineLine][mineColumn] += 1
+                }
             }
         }
-        document.querySelector('div.test').innerHTML += " - "
-        document.querySelector('div.test').innerHTML += `[${i}]`
-        document.querySelector('div.test').innerHTML += `<br>`
     }
-    document.querySelector('div.test').innerHTML += `<br>`
-    document.querySelector('div.test').innerHTML += `<br>`
 }
 
 function printBoard(){
@@ -151,6 +173,8 @@ const endGame = {
             endGame.stopFunctions()
             
             emoji.src = "assets/win.png"
+            var audio = new Audio('sounds/win.mp3');
+            audio.play();
         }
     },
     lose(loserCell){
@@ -159,6 +183,8 @@ const endGame = {
         loserCell.src = "assets/mine-red.png"
         loserCell.alt = "mine-red"
         emoji.src = "assets/dead.png"
+        var audio = new Audio('sounds/lose.mp3');
+        audio.play();
     },
     stopFunctions(){
         showBombs()
@@ -170,8 +196,7 @@ const endGame = {
     }
 }
 
-var minecounter = document.querySelector('.mine-counter')
-minecounter.innerHTML = minesAmount
+
 function flagField(event){
     //Remove default menu at right click
     event.preventDefault()
@@ -192,6 +217,7 @@ function flagField(event){
         PuttedFlags--
     }
 
+    var minecounter = document.querySelector('.mine-counter')
     if (minesAmount-PuttedFlags <= -10){
         minecounter.innerHTML = `${minesAmount-PuttedFlags}`
     } else if (minesAmount-PuttedFlags <= -1){
@@ -203,9 +229,12 @@ function flagField(event){
     } else {
         minecounter.innerHTML = minesAmount-PuttedFlags;
     }
+
+    var audio = new Audio('sounds/flagg.mp3');
+    audio.play();
 }
 
-function revealField(event){
+function revealField(event, cel){
     cell = event.target
     line = cell.parentNode.parentNode.rowIndex;
     col = cell.parentNode.cellIndex;
@@ -222,28 +251,49 @@ function revealField(event){
         //Special cases for id=0 or id=1
         switch (board[line][col]){
             case -1:
-                endGame.lose(cell)
-                break
+                if (firstClick == true){
+                    //Prevent to lose game in first click, move the bomb to other random location
+                    moveMine(line, col)
+                    setImage(cell, line, col)
+                    clearFields(line, col)
+                    return
+                } else{
+                    endGame.lose(cell)
+                    break
+                }
             case 0:
                 clearFields(line, col)
                 break
         }
+        firstClick = false
     }
+    var audio = new Audio('sounds/reveal.mp3');
+    audio.play();
     endGame.win()
 }
 
-function pre(event){
-
+function moveMine(line, col){
+    //Set new field inicial id to 0
+    board[line][col] = 0
+    //Downing -1 the fields around him, and +1 his id for every mine nearby
+    removeNumbersAround(line, col)
+    console.log(board)
+    //Now, putting the removed mine in other place, diferent that the original
+    setRemovedMine(line, col)
+    console.log(board)
 }
 
 function initGame(){
     table.onclick = revealField
     table.oncontextmenu = flagField
     emoji.src = "assets/happy.png"
-    emoji.onclick = () => {removeBoard(); initGame()}
+    var audio = new Audio('sounds/extra.mp3');
+    emoji.onclick = () => {removeBoard(); initGame(); audio.play()}
+    
     clearInterval(timerInterval)
     emoji.oncontextmenu = (event) => {event.preventDefault()}
     timerInterval = setInterval(incrementSeconds, 1000);
+    firstClick = true
 
     diff = document.querySelector('.difficulty')
     switch (diff.value){
@@ -251,25 +301,27 @@ function initGame(){
             boardLines = 9
             boardColumns = 9
             minesAmount = 10
-            document.body.style.zoom = "100%"
+            document.body.style.zoom = "90%"
             break
         case 'intermediary':
             boardLines = 16
             boardColumns = 16
             minesAmount = 40
-            document.body.style.zoom = "70%"
+            document.body.style.zoom = "60%"
             break
         case 'hard':
             boardLines = 16
             boardColumns = 30
             minesAmount = 99
-            document.body.style.zoom = "70%"
+            document.body.style.zoom = "60%"
             break
         case 'custom':
             console.log('custom')
         break
     }
 
+    //HUD Counters
+    var minecounter = document.querySelector('.mine-counter')
     PuttedFlags = 0
     minecounter.innerHTML = `0${minesAmount-PuttedFlags}`
     seconds = 0
@@ -309,6 +361,7 @@ function initGame(){
     setMines(minesAmount)
     printBoard()
     console.log(board)
+    
 }
 
 //timer HUD
@@ -329,3 +382,4 @@ function incrementSeconds() {
 initGame()
 diff = document.querySelector('.difficulty')
 diff.onchange = () => {removeBoard(); initGame()}
+document.querySelector('audio').volume = 0.01

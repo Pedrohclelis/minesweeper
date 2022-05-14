@@ -48,7 +48,7 @@ table {
 }
 
 td img {
-    width: 60px;
+    width: 64px;
     user-select: none; /*disable select imagems */
     -moz-user-select: none;
     -webkit-user-drag: none;
@@ -83,6 +83,11 @@ td img {
 
 .undiscovered.pressioned {
     content: url("assets/0.png");
+}
+
+.diff-selector {
+    color: white;
+    margin-top: 20px;
 }
 
 footer {
