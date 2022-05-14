@@ -108,16 +108,8 @@ a:visited {
     h1 {
         color: red;
     }
-    body {
-      zoom: 10%;
-    }
     .mine-counter, .timer {
-        background-color: rgb(24, 24, 24);
-        color: rgb(255, 0, 0);
-    
-        padding: 8px;
         font-size: 2em;
-        font-weight: bold;
     }
     .emoji {
         width: 64px;
@@ -130,12 +122,20 @@ a:visited {
     }
   }
 
-  
 @media only screen and (max-width: 500px) {
     h1 {
         color: blue;
     }
-    body {
-      zoom: 30%;
+    .mine-counter, .timer {
+        font-size: 2em;
+    }
+    .emoji {
+        width: 64px;
+    }
+    td img {
+        width: 50px;
+    }
+    .undiscovered:active {
+        content: url("assets/0.png");
     }
   }
