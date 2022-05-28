@@ -382,4 +382,4 @@ function incrementSeconds() {
 initGame()
 diff = document.querySelector('.difficulty')
 diff.onchange = () => {removeBoard(); initGame()}
-document.querySelector('audio').volume = 0.01
+document.querySelector('audio').volume = 1
