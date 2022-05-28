@@ -130,21 +130,28 @@ a:visited {
         color: blue;
     }
     .hud {
-        border-top: 10px solid #808080;
-        border-left: 10px solid #808080;
-        border-right: 10px solid #ffffff;
-        border-bottom: 10px solid #ffffff;
-        
+        border-top:5px solid #808080;
+        border-left:5px solid #808080;
+        border-right:5px solid #ffffff;
+        border-bottom:5px solid #ffffff;
+
         padding: 10px 20px 10px 20px;
         margin-bottom: 10px;    
     }
     .general {
-        border-top: 10px solid #ffffff;
-        border-left: 10px solid #ffffff;
-        border-right: 10px solid #808080;
-        border-bottom: 10px solid #808080;
+        border-top: 5px solid #ffffff;
+        border-left: 5px solid #ffffff;
+        border-right: 5px solid #808080;
+        border-bottom: 5px solid #808080;
         padding: 10px;
     }
+    table {
+        border-top: 5px solid #808080;
+        border-left: 5px solid #808080;
+        border-right: 5px solid #ffffff;
+        border-bottom: 5px solid #ffffff;
+    }
+    
     .mine-counter, .timer {
         font-size: 1em;
     }
