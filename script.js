@@ -301,19 +301,19 @@ function initGame(){
             boardLines = 9
             boardColumns = 9
             minesAmount = 10
-            document.body.style.zoom = "90%"
+            document.body.style.zoom = "110%"
             break
         case 'intermediary':
             boardLines = 16
             boardColumns = 16
             minesAmount = 40
-            document.body.style.zoom = "60%"
+            document.body.style.zoom = "80%"
             break
         case 'hard':
             boardLines = 16
             boardColumns = 30
             minesAmount = 99
-            document.body.style.zoom = "60%"
+            document.body.style.zoom = "80%"
             break
         case 'custom':
             console.log('custom')

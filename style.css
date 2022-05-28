@@ -48,7 +48,7 @@ table {
 }
 
 td img {
-    width: 64px;
+    width: 45px;
     user-select: none; /*disable select imagems */
     -moz-user-select: none;
     -webkit-user-drag: none;
@@ -61,12 +61,12 @@ td img {
     color: rgb(255, 0, 0);
 
     padding: 8px;
-    font-size: 3.5em;
+    font-size: 3em;
     font-weight: bold;
 }
 
 .emoji {
-    width: 96px;
+    width: 80px;
 }
 
 .emoji:hover {
