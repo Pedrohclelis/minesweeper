@@ -127,7 +127,7 @@ a:visited {
 
 @media only screen and (max-width: 500px) {
     h1 {
-        color: rgb(255, 251, 0);
+        color: rgb(255, 0, 179);
     }
     .hud {
         border-top:5px solid #808080;
@@ -135,7 +135,7 @@ a:visited {
         border-right:5px solid #ffffff;
         border-bottom:5px solid #ffffff;
 
-        padding: 10px 20px 10px 20px;
+        padding: 5px 10px 5px 10px;
         margin-bottom: 10px;    
     }
     .general {
