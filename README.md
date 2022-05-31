@@ -16,3 +16,10 @@ The pillar of the game, i learned to many things while go deeping inside that ch
 4. Putting the game rules inside an object to better use, doing verifications if the remain undiscovered are all mines to declare win, or death if a mine is releved. And stoping other game functions while table isnt reseted in emoji 
 6. The "emoji" thing in the middle, changing his face on player's mouse actions. A lot of mouse events to create a decent "hover" and "active" like effect. Flag and time counters, the second using `setInterval` and needing to reset with the board too. Sounds for actions and OST
 
+## To play
+Just clone the repository and start the index.html file
+<br><br>
+
+<p align="center" >
+  <img width="50%" src="https://user-images.githubusercontent.com/85136766/171074567-52613d86-b487-4471-9495-afa4e327d1d2.png"/>
+</p>
