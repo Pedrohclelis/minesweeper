@@ -234,7 +234,7 @@ function flagField(event){
     audio.play();
 }
 
-function revealField(event, cel){
+function revealField(event){
     cell = event.target
     line = cell.parentNode.parentNode.rowIndex;
     col = cell.parentNode.cellIndex;
@@ -382,4 +382,4 @@ function incrementSeconds() {
 initGame()
 diff = document.querySelector('.difficulty')
 diff.onchange = () => {removeBoard(); initGame()}
-document.querySelector('audio').volume = 1
+document.querySelector('audio').volume = 0.5
