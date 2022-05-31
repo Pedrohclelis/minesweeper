@@ -301,7 +301,7 @@ function initGame(){
             boardLines = 9
             boardColumns = 9
             minesAmount = 10
-            document.body.style.zoom = "110%"
+            document.body.style.zoom = "115%"
             break
         case 'intermediary':
             boardLines = 16
