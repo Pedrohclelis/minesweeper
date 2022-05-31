@@ -118,7 +118,7 @@ a:visited {
         width: 64px;
     }
     td img {
-        width: 50px;
+        width: 30px;
     }
     .undiscovered:active {
         content: url("assets/0.png");
@@ -127,7 +127,7 @@ a:visited {
 
 @media only screen and (max-width: 500px) {
     h1 {
-        color: rgb(255, 0, 179);
+        color: rgb(255, 0, 0);
     }
     .hud {
         border-top:5px solid #808080;
@@ -135,7 +135,7 @@ a:visited {
         border-right:5px solid #ffffff;
         border-bottom:5px solid #ffffff;
 
-        padding: 5px 10px 5px 10px;
+        padding: 2px 6px 2px 6px;
         margin-bottom: 10px;    
     }
     .general {
@@ -152,10 +152,11 @@ a:visited {
         border-bottom: 5px solid #ffffff;
     }
     .mine-counter, .timer {
-        font-size: 1em;
+        padding: 6px;
+        font-size: 0.8em;
     }
     .emoji {
-        width: 32px;
+        width: 30px;
     }
     td img {
         width: 13px;
